@@ -197,7 +197,7 @@ open class TagListView: UIView {
         }
     }
     
-    @objc dynamic var tagMaxWidth: CGFloat = 0.0 {
+    @objc open dynamic var tagMaxWidth: CGFloat = 0.0 {
         didSet {
             rearrangeViews()
         }
