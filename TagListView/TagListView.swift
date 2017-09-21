@@ -197,6 +197,12 @@ open class TagListView: UIView {
         }
     }
     
+    @objc dynamic var tagMaxWidth: CGFloat = 0.0 {
+        didSet {
+            rearrangeViews()
+        }
+    }
+    
     @IBOutlet open weak var delegate: TagListViewDelegate?
     
     open private(set) var tagViews: [TagView] = []
@@ -313,6 +319,7 @@ open class TagListView: UIView {
         tagView.removeButtonIconSize = removeButtonIconSize
         tagView.enableRemoveButton = enableRemoveButton
         tagView.removeIconLineColor = removeIconLineColor
+        tagView.tagMaxWidth = tagMaxWidth > 0.0 ? tagMaxWidth : nil
         tagView.addTarget(self, action: #selector(tagPressed(_:)), for: .touchUpInside)
         tagView.removeButton.addTarget(self, action: #selector(removeButtonPressed(_:)), for: .touchUpInside)
         

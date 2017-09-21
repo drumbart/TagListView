@@ -87,6 +87,8 @@ open class TagView: UIButton {
         }
     }
     
+    var tagMaxWidth: CGFloat?
+    
     private func reloadStyles() {
         if isHighlighted {
             if let highlightedBackgroundColor = highlightedBackgroundColor {
@@ -163,7 +165,6 @@ open class TagView: UIButton {
     public init(title: String) {
         super.init(frame: CGRect.zero)
         setTitle(title, for: UIControlState())
-        
         setupView()
     }
     
@@ -185,7 +186,8 @@ open class TagView: UIButton {
     // MARK: - layout
 
     override open var intrinsicContentSize: CGSize {
-        var size = titleLabel?.text?.size(withAttributes: [NSAttributedStringKey.font: textFont]) ?? CGSize.zero
+        let fontAttribute = [NSAttributedStringKey.font: textFont]
+        var size = titleLabel?.text?.size(withAttributes: fontAttribute) ?? CGSize.zero
         size.height = textFont.pointSize + paddingY * 2
         size.width += paddingX * 2
         if size.width < size.height {
@@ -194,6 +196,23 @@ open class TagView: UIButton {
         if enableRemoveButton {
             size.width += removeButtonIconSize + paddingX
         }
+        
+        if let maxWidth = self.tagMaxWidth {
+            if size.width > maxWidth {
+//                let constraint = CGSize(width: maxSize.width - (paddingX * 2) - (removeButtonIconSize + paddingX), height: CGFloat.greatestFiniteMagnitude)
+//
+//                let options = NSStringDrawingOptions.usesLineFragmentOrigin
+//                let boundingBox = titleLabel!.text!.boundingRect(with: constraint,
+//                                                                 options: options,
+//                                                                 attributes: fontAttribute,
+//                                                                 context: nil)
+//
+//                let newHeight = boundingBox.height + paddingY * 2
+//                size = CGSize(width: maxSize.width, height: newHeight)
+                size = CGSize(width: maxWidth, height: size.height)
+            }
+        }
+        
         return size
     }
     

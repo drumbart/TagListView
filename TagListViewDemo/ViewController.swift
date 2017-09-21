@@ -18,40 +18,48 @@ class ViewController: UIViewController, TagListViewDelegate {
         super.viewDidLoad()
         
         tagListView.delegate = self
+        tagListView.backgroundColor = UIColor.red
+        tagListView.tagMaxWidth = tagListView.bounds.size.width
+//        tagListView.tagLineBreakMode = .byWordWrapping
+        
+        tagListView.addTag("this is a very long tag title that should be word wrapped")
+        
         tagListView.addTag("TagListView")
         tagListView.addTag("TEAChart")
+        tagListView.addTag("This is a very long tag word wrapped")
         tagListView.addTag("To Be Removed")
         tagListView.addTag("To Be Removed")
         tagListView.addTag("Quark Shell")
+        
         tagListView.removeTag("To Be Removed")
         tagListView.addTag("On tap will be removed").onTap = { [weak self] tagView in
             self?.tagListView.removeTagView(tagView)
         }
         
-        let tagView = tagListView.addTag("gray")
-        tagView.tagBackgroundColor = UIColor.gray
-        tagView.onTap = { tagView in
-            print("Don’t tap me!")
-        }
-
-        tagListView.insertTag("This should be the third tag", at: 2)
-        
-        biggerTagListView.delegate = self
-        biggerTagListView.textFont = UIFont.systemFont(ofSize: 15)
-        biggerTagListView.shadowRadius = 2
-        biggerTagListView.shadowOpacity = 0.4
-        biggerTagListView.shadowColor = UIColor.black
-        biggerTagListView.shadowOffset = CGSize(width: 1, height: 1)
-        biggerTagListView.addTag("Inboard")
-        biggerTagListView.addTag("Pomotodo")
-        biggerTagListView.addTag("Halo Word")
-        biggerTagListView.alignment = .center
-        
-        biggestTagListView.delegate = self
-        biggestTagListView.textFont = UIFont.systemFont(ofSize: 24)
-        // it is also possible to add all tags in one go
-        biggestTagListView.addTags(["all", "your", "tag", "are", "belong", "to", "us"])
-        biggestTagListView.alignment = .right
+//        let tagView = tagListView.addTag("gray")
+//        tagView.tagBackgroundColor = UIColor.gray
+//        tagView.onTap = { tagView in
+//            print("Don’t tap me!")
+//        }
+//
+//        tagListView.insertTag("This should be the third tag", at: 2)
+//
+//        biggerTagListView.delegate = self
+//        biggerTagListView.textFont = UIFont.systemFont(ofSize: 15)
+//        biggerTagListView.shadowRadius = 2
+//        biggerTagListView.shadowOpacity = 0.4
+//        biggerTagListView.shadowColor = UIColor.black
+//        biggerTagListView.shadowOffset = CGSize(width: 1, height: 1)
+//        biggerTagListView.addTag("Inboard")
+//        biggerTagListView.addTag("Pomotodo")
+//        biggerTagListView.addTag("Halo Word")
+//        biggerTagListView.alignment = .center
+//
+//        biggestTagListView.delegate = self
+//        biggestTagListView.textFont = UIFont.systemFont(ofSize: 24)
+//        // it is also possible to add all tags in one go
+//        biggestTagListView.addTags(["all", "your", "tag", "are", "belong", "to", "us"])
+//        biggestTagListView.alignment = .right
         
     }
     
