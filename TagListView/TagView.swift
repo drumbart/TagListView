@@ -143,6 +143,8 @@ open class TagView: UIButton {
         }
     }
     
+    var maxWidth: CGFloat?
+    
     /// Handles Tap (TouchUpInside)
     open var onTap: ((TagView) -> Void)?
     open var onLongPress: ((TagView) -> Void)?
@@ -187,6 +189,13 @@ open class TagView: UIButton {
         if enableRemoveButton {
             size.width += removeButtonIconSize + paddingX
         }
+        
+        if let maxWidth = self.maxWidth {
+            if size.width > maxWidth {
+                size = CGSize(width: maxWidth, height: size.height)
+            }
+        }
+        
         return size
     }
     

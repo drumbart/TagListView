@@ -17,6 +17,8 @@ class ViewController: UIViewController, TagListViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tagListView.maxTagWidth = 100.0
+        
         tagListView.delegate = self
         tagListView.addTag("TagListView")
         tagListView.addTag("TEAChart")
